@@ -1,0 +1,92 @@
+{
+  "item": [
+    {
+      "id": "b5495496-8dab-4147-a5ae-d7ca78980fb7",
+      "name": "Create an event trigger",
+      "request": {
+        "name": "Create an event trigger",
+        "url": {
+          "protocol": "https",
+          "path": [
+            "events",
+            "event-triggers"
+          ],
+          "host": [
+            "rest",
+            "zuora",
+            "com"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json; charset=utf-8"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json; charset=utf-8"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"baseObject\": \"eu su\",\n  \"condition\": \"Lorem\"\n}"
+        }
+      },
+      "response": [
+        {
+          "id": "456985e0-e15e-4797-8055-a35fee942eac",
+          "header": [],
+          "cookie": [],
+          "name": "OK",
+          "body": "\"quis culpa nulla eiusmod\"",
+          "code": 200
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variables": [
+    {
+      "type": "object",
+      "properties": {
+        "baseObject": {
+          "type": "string",
+          "description": "The base object that the trigger rule is defined upon. Should be specified in the pattern: ^[A-Z][\\\\w\\\\-]*$",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "condition": {
+          "type": "string",
+          "description": "The JEXL expression to be evaluated against object changes. See above for more information and an example.",
+          "minLength": 1,
+          "maxLength": 5000
+        }
+      },
+      "required": [
+        "baseObject",
+        "condition"
+      ],
+      "example": {
+        "baseObject": "Invoice",
+        "condition": "changeType == 'UPDATE' && Invoice.Status == 'Posted' && Invoice.Status_old != 'Posted' && Invoice.Amount > 1000"
+      }
+    }
+  ],
+  "info": {
+    "_postman_id": "6763b131-e4dc-4600-8fbd-025bd3c84467",
+    "name": "Zuora API Reference - Test 01",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
