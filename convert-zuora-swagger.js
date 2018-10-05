@@ -1,7 +1,7 @@
 const fs = require("fs");
 const refParser = require("json-schema-ref-parser");
 const swagger2Postman = require("./index.js");
-const PostmanVariableList = require('postman-collection').VariableList
+const PostmanVariableList = require("postman-collection").VariableList
 
     
 var specURL = "https://www.zuora.com/wp-content/themes/zuora/yaml/swagger.yaml";
