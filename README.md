@@ -36,7 +36,7 @@ This repository includes the following adaptations to [swagger2-postman2](https:
 
 * The Postman collection leverages Postman support for bearer token authentication. The requests in the collection do not contain `Authorization` headers. Instead, Postman automatically sets the `Authorization` header when you send a request.
 
-  To use this feature, first use "Generate an OAuth token". Send your Client ID and Client Secret in the body. A test script extracts your bearer token from the response and sets an environment variable called `bearer_token`. Postman inserts the value of `bearer_token` into the `Authorization` header when you send other requests.
+  To use this feature, first use the "Generate an OAuth token" request. Send your Client ID and Client Secret in the body. A test script then extracts your bearer token from the response and sets an environment variable called `bearer_token`. Postman inserts the value of `bearer_token` into the `Authorization` header when you send other requests.
 
 * The Postman collection contains a variable called `zuora_host`. Each request in the collection has `zuora_host` in the URL. The default value of `zuora_host` is `rest.apisandbox.zuora.com`. You can override the default value by setting an environment variable called `zuora_host`.
 
@@ -44,6 +44,6 @@ This repository includes the following adaptations to [swagger2-postman2](https:
 
 * Parameters in the Postman collection are only enabled if they are required. This applies to query parameters, request headers, and form parameters.
 
-* If a parameter in the Postman collection must be set to a specific value (for instance, the `grant_type` form parameter in "Generate an OAuth token") the parameter defaults to the correct value.
+* If a parameter in the Postman collection must be set to a specific value, the parameter defaults to the correct value. (For instance, the `grant_type` form parameter in "Generate an OAuth token" must be set to `client_credentials`.)
 
 * The converter does not produce duplicate `Content-Type` headers in the Postman collection.
