@@ -1,7 +1,6 @@
 const fs = require("fs");
 const refParser = require("json-schema-ref-parser");
 const swagger2Postman = require("./index.js");
-const PostmanVariableList = require("postman-collection").VariableList
 
     
 var specURL = "https://www.zuora.com/wp-content/themes/zuora/yaml/swagger.yaml";
@@ -29,15 +28,15 @@ refParser.dereference(specURL, {}, (err, spec) => {
   var converted = swagger2Postman.convert(spec);
   
   // Define a variable for the host
-  converted.collection.variables = new PostmanVariableList(null, [{
+  converted.collection.variables = [{
     key: "zuora_host",
     value: defaultHost,
     type: "string"
-  }]);
+  }];
   
   // Save the Postman collection
   var postmanFilename = `zuora-postman-${specVersion}.json`;
-  var postmanJSON = JSON.stringify(converted.collection.toJSON(), null, 2);
+  var postmanJSON = JSON.stringify(converted.collection, null, 2);
   fs.writeFileSync(postmanFilename, postmanJSON, "utf8");
   console.log(`Saved Postman collection as ${postmanFilename}`);
   
