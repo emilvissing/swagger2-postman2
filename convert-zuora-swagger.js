@@ -25,18 +25,58 @@ refParser.dereference(specURL, {}, (err, spec) => {
   
   // Convert the Swagger spec
   console.log("Converting Swagger spec to a Postman collection...");
-  var converted = swagger2Postman.convert(spec);
+  var collection = swagger2Postman.convert(spec).collection;
   
   // Define a variable for the host
-  converted.collection.variables = [{
+  collection.variables = [{
     key: "zuora_host",
     value: defaultHost,
     type: "string"
   }];
   
+  // Set the authorization method to Bearer Token
+  collection.auth = {
+    type: "bearer",
+    bearer: [{
+      key: "token",
+      value: "{{bearer_token}}",
+      type: "string"
+    }]
+  };
+  
+  // Modify POST /oauth/token to save the generated token
+  collection.item.forEach(item => {
+    if (
+      item.hasOwnProperty("request") &&
+      item.request.method == "POST" &&
+      item.request.url.path.length == 2 &&
+      item.request.url.path[0] == "oauth" &&
+      item.request.url.path[1] == "token"
+    ) {
+      // Define a test script that saves the generated token
+      item.event = [{
+        listen: "test",
+        script: {
+          type: "text/javascript",
+          exec: [
+            "tests[\"OAuth token generated\"] = (",
+            "  responseCode.code === 200 &&",
+            "  JSON.parse(responseBody).hasOwnProperty(\"access_token\")",
+            ");",
+            "",
+            "if (tests[\"OAuth token generated\"]) {",
+            "  var body = JSON.parse(responseBody);",
+            "  postman.setEnvironmentVariable(\"bearer_token\", body.access_token);",
+            "}"
+          ]
+        }
+      }]
+    }
+  });
+  
   // Save the Postman collection
   var postmanFilename = `zuora-postman-${specVersion}.json`;
-  var postmanJSON = JSON.stringify(converted.collection, null, 2);
+  var postmanJSON = JSON.stringify(collection, null, 2);
   fs.writeFileSync(postmanFilename, postmanJSON, "utf8");
   console.log(`Saved Postman collection as ${postmanFilename}`);
   
