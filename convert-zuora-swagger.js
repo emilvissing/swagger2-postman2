@@ -19,7 +19,9 @@ refParser.dereference(specURL, {}, (err, spec) => {
   // Prepare the Swagger spec
   delete spec.definitions;
   spec.info.title = `Zuora REST API (${specVersion})`;
-  spec.info.description = "See https://www.zuora.com/developer/api-reference/ for the latest REST API documentation.";
+  spec.info.description = `See https://www.zuora.com/developer/api-reference/ for the latest REST API documentation
+
+This collection was generated using https://github.com/davidwzuora/swagger2-postman2`;
   var defaultHost = spec.host;
   spec.host = "{{zuora_host}}";
   
