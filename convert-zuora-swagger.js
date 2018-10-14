@@ -22,7 +22,6 @@ refParser.dereference(specURL, {}, (err, spec) => {
   spec.info.description = `See https://www.zuora.com/developer/api-reference/ for the latest REST API documentation
 
 This collection was generated using https://github.com/davidwzuora/swagger2-postman2`;
-  var defaultHost = spec.host;
   spec.host = "{{zuora_host}}";
   
   // Convert the Swagger spec
@@ -32,7 +31,7 @@ This collection was generated using https://github.com/davidwzuora/swagger2-post
   // Define a variable for the host
   collection.variables = [{
     key: "zuora_host",
-    value: defaultHost,
+    value: "rest.apisandbox.zuora.com",
     type: "string"
   }];
   
