@@ -45,7 +45,7 @@ This collection was generated using https://github.com/davidwzuora/swagger2-post
     }]
   };
   
-  // Modify POST /oauth/token to save the generated token
+  // Modify POST /oauth/token
   collection.item.forEach(item => {
     if (
       item.hasOwnProperty("request") &&
@@ -54,6 +54,10 @@ This collection was generated using https://github.com/davidwzuora/swagger2-post
       item.request.url.path[0] == "oauth" &&
       item.request.url.path[1] == "token"
     ) {
+      // Don't use Bearer Token authorization
+      item.request.auth = {
+        type: "noauth"
+      }
       // Define a test script that saves the generated token
       item.event = [{
         listen: "test",
