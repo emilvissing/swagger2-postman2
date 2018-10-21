@@ -57,7 +57,7 @@ This collection was generated using https://github.com/davidwzuora/swagger2-post
       // Don't use Bearer Token authorization
       item.request.auth = {
         type: "noauth"
-      }
+      };
       // Define a test script that saves the generated token
       item.event = [{
         listen: "test",
@@ -75,7 +75,7 @@ This collection was generated using https://github.com/davidwzuora/swagger2-post
             "}"
           ]
         }
-      }]
+      }];
     }
   });
   
