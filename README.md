@@ -4,6 +4,8 @@ This repository demonstrates how to adapt [swagger2-postman2](https://github.com
 
 The converter in this repository is provided for reference purposes only. It is not supported by Zuora.
 
+Visit [Zuora Community](https://community.zuora.com/t5/Developers/Postman-collection-for-the-Zuora-REST-API/gpm-p/25600) to learn more about using Postman to test the Zuora REST API.
+
 # Usage
 
 1. Clone this repository:
