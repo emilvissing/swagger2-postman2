@@ -49,3 +49,5 @@ This repository includes the following adaptations to [swagger2-postman2](https:
 * If a parameter in the Postman collection must be set to a specific value, the parameter defaults to the correct value. (For instance, the `grant_type` form parameter in "Generate an OAuth token" must be set to `client_credentials`.)
 
 * The converter does not produce duplicate `Content-Type` headers in the Postman collection.
+
+* If a request has a JSON body, the Postman collection includes an example that shows the name and type of each field that is supported in the request body. In the example, fields called `*` represent custom fields.
