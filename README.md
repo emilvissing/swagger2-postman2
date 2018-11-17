@@ -50,4 +50,6 @@ This repository includes the following adaptations to [swagger2-postman2](https:
 
 * The converter does not produce duplicate `Content-Type` headers in the Postman collection.
 
-* If a request has a JSON body, the Postman collection includes an example that shows the name and type of each field that is supported in the request body. In the example, fields called `*` represent custom fields.
+* If a request has a JSON body, the Postman collection includes an example called "All request body fields". The example shows the name and type of each field that is supported in the request body. In the example, fields called `*` represent custom fields.
+
+* Other examples in the Postman collection are called "\<code> response", where \<code> is a possible response code. Due to differences in the way the Zuora Swagger specification is parsed, some examples in the Postman collection do not match the corresponding response samples in the [Zuora API Reference].
