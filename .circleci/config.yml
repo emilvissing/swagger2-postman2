@@ -1,0 +1,38 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - restore_cache:
+          key: package-cache-{{ checksum "package.json" }}
+      - run:
+          name: Installing converter
+          command: npm install
+      - save_cache:
+          key: package-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Running converter
+          command: node convert-zuora-swagger.js
+      - run:
+          name: Moving output
+          command: |
+            mkdir output;
+            mv zuora-postman-*.json output;
+      - store_artifacts:
+          path: output
+
+workflows:
+   version: 2
+   weekly:
+     triggers:
+       - schedule:
+           cron: "0 11 * * 5"
+           filters:
+            branches:
+              only: master
+     jobs:
+       - build
