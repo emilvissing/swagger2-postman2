@@ -3,7 +3,7 @@ const refParser = require("json-schema-ref-parser");
 const swagger2Postman = require("./index.js");
 
     
-var specURL = "https://assets.zuora.com/zuora-documentation/swagger.yaml";
+var specURL = "https://www.zuora.com/developer/yaml/swagger.yaml";
 
 console.log(`Downloading Swagger spec...`);
 refParser.dereference(specURL, {}, (err, spec) => {
